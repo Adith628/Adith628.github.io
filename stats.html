@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Site stats — Adithyan T</title>
+  <!-- unlisted: keep it out of search results -->
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    try {
+      const theme = localStorage.getItem("theme");
+      if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
+    } catch {}
+  </script>
+</head>
+<body>
+  <main id="stats" aria-busy="true">
+    <header>
+      <div class="header-top">
+        <a class="back" href="./">← Adithyan T</a>
+        <span id="toggle-slot"></span>
+      </div>
+      <h1>Site stats</h1>
+      <p class="meta" id="stats-meta">Loading…</p>
+    </header>
+    <div id="stats-body"></div>
+  </main>
+  <script src="theme.js"></script>
+  <script src="stats.js"></script>
+</body>
+</html>

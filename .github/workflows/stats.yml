@@ -1,0 +1,45 @@
+# Every 3 hours, pull visitor stats from GoatCounter and publish them as stats.json on the
+# `stats` branch, which stats.html reads. Keeping it on its own branch means main's history
+# stays clean and the site doesn't rebuild on every update.
+#
+# Needs a repository secret GOATCOUNTER_TOKEN (a GoatCounter API key with "Read statistics").
+name: Update site stats
+
+on:
+  schedule:
+    - cron: "17 */3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: stats
+  cancel-in-progress: true
+
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Fetch stats from GoatCounter
+        run: node scripts/fetch-stats.mjs stats.json
+        env:
+          GOATCOUNTER_TOKEN: ${{ secrets.GOATCOUNTER_TOKEN }}
+
+      - name: Publish to the stats branch
+        run: |
+          mkdir publish && mv stats.json publish/
+          cd publish
+          git init -q -b stats
+          git add stats.json
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit -q -m "Update stats"
+          git push -q -f "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" stats
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
