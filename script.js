@@ -27,6 +27,16 @@ function link(url, text, attrs = {}) {
 }
 
 const list = (items = []) => (items.length ? h("ul", {}, items.map((item) => h("li", {}, h("span", {}, item)))) : null);
+
+// "Go · TypeScript · Tailwind CSS": each name stays on one line; lines only wrap at the dots
+const dotted = (items) => items.map((item, i) => [
+  i ? [" ", h("span", { class: "sep", "aria-hidden": "true" }, "·"), " "] : null,
+  h("span", { class: "nowrap" }, item),
+]);
+
+// keep year ranges like "2023 – 2024" together on one line (browsers may otherwise break after the dash)
+const keepRanges = (text) =>
+  text.split(/(\d{4}\s*–\s*(?:\d{4}|Present))/).map((part, i) => (i % 2 ? h("span", { class: "nowrap" }, part) : part));
 const section = (title, ...body) => h("section", {}, h("h2", {}, title), ...body);
 
 function renderHeader(profile, links) {
@@ -50,12 +60,7 @@ const sections = {
   skills: (skills) => section("Skills",
     h("dl", { class: "skills" }, skills.map((s) => [
       h("dt", {}, s.group),
-      // each skill is its own span so a name like "Tailwind CSS" never breaks across lines
-      // lines can only wrap at the spaces around the separator dots
-      h("dd", {}, s.items.map((item, i) => [
-        i ? [" ", h("span", { class: "sep", "aria-hidden": "true" }, "·"), " "] : null,
-        h("span", { class: "skill" }, item),
-      ])),
+      h("dd", {}, dotted(s.items)),
     ])),
   ),
 
@@ -80,7 +85,7 @@ const sections = {
         ),
         h("p", { class: "desc" }, p.description),
         list(p.bullets),
-        p.tech?.length ? h("p", { class: "tech" }, p.tech.join(" · ")) : null,
+        p.tech?.length ? h("p", { class: "tech" }, dotted(p.tech)) : null,
       ),
     )),
   ),
@@ -97,7 +102,7 @@ const sections = {
   highlights: (items) => section("Highlights",
     h("ul", {}, items.map((item) => {
       const title = h("strong", {}, item.title);
-      return h("li", {}, h("span", {}, item.url ? link(item.url, title) : title, item.detail ? ` — ${item.detail}` : ""));
+      return h("li", {}, h("span", {}, item.url ? link(item.url, title) : title, item.detail ? [" — ", keepRanges(item.detail)] : null));
     })),
   ),
 };

@@ -99,6 +99,9 @@ h2 { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: 
 
 .row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
 .title { font-weight: 500; color: var(--fg); }
+/* linked titles get a quiet underline so they read as links on touch screens, where there's no hover */
+a.title { text-decoration: underline; text-decoration-color: var(--muted); text-decoration-thickness: 1px; text-underline-offset: 4px; }
+a.title:hover { text-decoration-color: var(--accent); }
 .date { font-size: 13px; color: var(--muted); white-space: nowrap; }
 .desc { font-size: 14px; }
 .tech { font-size: 13px; color: var(--muted); }
@@ -110,8 +113,8 @@ li::before { content: "–"; color: var(--muted); flex-shrink: 0; }
 .skills { display: grid; grid-template-columns: max-content 1fr; gap: 6px 20px; font-size: 14px; }
 .skills dt { color: var(--muted); }
 .skills dd { color: var(--fg); }
-.skill { white-space: nowrap; }
-.skills .sep { color: var(--muted); }
+.nowrap { white-space: nowrap; }
+.sep { color: var(--muted); }
 
 footer { font-size: 14px; color: var(--muted); padding-top: 24px; border-top: 1px dashed var(--rule); }
 footer a { color: var(--fg); text-decoration: underline; text-underline-offset: 3px; }
