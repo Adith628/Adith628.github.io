@@ -118,7 +118,7 @@ function renderThemeToggle() {
   const update = () => {
     const theme = getTheme();
     const label = theme[0].toUpperCase() + theme.slice(1);
-    button.innerHTML = `${THEME_ICONS[theme]}<span>${label}</span>`;
+    button.innerHTML = THEME_ICONS[theme];
     button.setAttribute("aria-label", `Theme: ${label}. Click to change.`);
     button.title = `Theme: ${label}`;
   };
