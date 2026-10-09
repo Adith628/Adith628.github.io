@@ -31,7 +31,10 @@ const section = (title, ...body) => h("section", {}, h("h2", {}, title), ...body
 
 function renderHeader(profile, links) {
   return h("header", {},
-    h("img", { id: "avatar", src: profile.photo, alt: profile.name, width: 88, height: 88, draggable: "false" }),
+    h("div", { class: "header-top" },
+      h("img", { id: "avatar", src: profile.photo, alt: profile.name, width: 88, height: 88, draggable: "false" }),
+      renderThemeToggle(),
+    ),
     h("h1", {}, profile.name),
     h("p", { class: "role" },
       profile.role,
@@ -132,7 +135,6 @@ function renderThemeToggle() {
 
 function render(content) {
   app.replaceChildren(
-    renderThemeToggle(),
     renderHeader(content.profile, content.links || []),
     ...(content.sectionOrder || Object.keys(sections))
       .filter((key) => sections[key] && content[key]?.length)
