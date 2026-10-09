@@ -1,0 +1,116 @@
+{
+  "profile": {
+    "name": "Adithyan T",
+    "role": "Software Engineer",
+    "company": "Armada",
+    "companyUrl": "https://www.armada.ai/",
+    "bio": "I build Go backend services, React platforms and AI-powered internal tools, and ship them to Kubernetes.",
+    "location": "Trivandrum, Kerala, India",
+    "timezone": "Asia/Kolkata",
+    "timezoneLabel": "IST",
+    "photo": "avatar.jpg"
+  },
+
+  "links": [
+    { "label": "GitHub", "url": "https://github.com/Adith628" },
+    { "label": "LinkedIn", "url": "https://www.linkedin.com/in/adithyan-t-ba37b9220/" },
+    { "label": "adithyant.mail@gmail.com", "url": "mailto:adithyant.mail@gmail.com" },
+    { "label": "CV", "url": "cv.pdf" }
+  ],
+
+  "sectionOrder": ["skills", "experience", "projects", "education", "highlights"],
+
+  "skills": [
+    { "group": "Languages", "items": ["Go", "TypeScript", "JavaScript", "Python", "SQL"] },
+    { "group": "Frontend", "items": ["React", "Next.js", "Redux", "Tailwind CSS", "MUI", "Storybook"] },
+    { "group": "Backend", "items": ["Go", "Node.js", "Express", "PostgreSQL", "Prisma", "REST", "Microservices"] },
+    { "group": "Cloud", "items": ["Docker", "Kubernetes", "Azure AKS", "GitHub Actions"] },
+    { "group": "AI", "items": ["AI agents", "Agent Development Kit", "Gemini", "Claude"] }
+  ],
+
+  "experience": [
+    {
+      "role": "Software Engineer",
+      "company": "Armada",
+      "url": "https://www.armada.ai/",
+      "dates": "Aug 2025 – Present",
+      "bullets": [
+        "Owned the Go backend for an internal analytics platform used by 80+ employees and leadership: company data, embedded Datadog dashboards, Claude usage across the org, and an AI chatbot that answers questions from Datadog with streaming responses",
+        "Owned the support service in Armada's Bridge platform, letting users raise tickets, with role-based access and workflows for assignment and resolution",
+        "Built frontend workflows for a multi-tenant IaaS/PaaS platform for edge datacenters: VM provisioning, cluster creation, resource allocation and AI model deployment",
+        "Built quarterly GitHub engineering reports with Gemini multi-agent workflows, and an internal React component library (Storybook, MUI) meeting WCAG 2.0 A & AA",
+        "Set up CI/CD for Go services with GitHub Actions, deploying to Azure Kubernetes Service with Managed Identity and Key Vault"
+      ]
+    },
+    {
+      "role": "Full Stack Intern",
+      "company": "Frinks.ai",
+      "url": "https://frinks.ai/",
+      "dates": "Jan 2025 – Mar 2025",
+      "bullets": [
+        "Built features for an ERP platform with role-based access control and multi-level user workflows"
+      ]
+    },
+    {
+      "role": "Front-End Intern",
+      "company": "Oronium",
+      "url": "https://www.oronium.com/",
+      "dates": "Apr 2024 – Dec 2024",
+      "bullets": [
+        "Turned design prototypes into responsive, reusable components with React, Next.js and Tailwind CSS"
+      ]
+    }
+  ],
+
+  "projects": [
+    {
+      "name": "Project Management System",
+      "live": "https://main.d11ne0pzb7q30h.amplifyapp.com/",
+      "code": "",
+      "description": "A full-stack project tracker with task assignment and List, Board, Timeline and Table views.",
+      "bullets": [
+        "Frontend in Next.js with Redux Toolkit and MUI; REST API in Express with Prisma, PostgreSQL and schema migrations"
+      ],
+      "tech": ["Next.js", "Redux", "Express", "Prisma", "PostgreSQL"]
+    },
+    {
+      "name": "OpenLidarX",
+      "live": "",
+      "code": "",
+      "description": "A desktop toolkit for processing LiDAR point clouds: ground filtering, denoising and surface reconstruction, with a real-time 3D preview and measurement tools.",
+      "bullets": [],
+      "tech": ["Python", "PyQt5", "Open3D", "PyVista"]
+    }
+  ],
+
+  "education": [
+    {
+      "degree": "B.Tech Computer Science",
+      "school": "College of Engineering Trivandrum",
+      "dates": "2021 – 2025"
+    }
+  ],
+
+  "highlights": [
+    {
+      "title": "1st prize, Hack@Arch 2.0",
+      "url": "https://www.linkedin.com/posts/adithyan-t-ba37b9220_hackatarch-tinkerhubgect-ieeesbgect-activity-7126958097058734080-V4lq",
+      "detail": "national hackathon, 700+ teams (2023)"
+    },
+    {
+      "title": "Web Frontend Lead, GDSC CET",
+      "url": "",
+      "detail": "led the web team's projects and code reviews (2023 – 2024)"
+    },
+    {
+      "title": "Volunteer Secretary, NSS CET",
+      "url": "",
+      "detail": "led 200+ volunteers in health camps and blood drives (2023 – 2024)"
+    },
+    {
+      "title": "Project Convenor, Drishti 2024",
+      "url": "",
+      "detail": "ran a 40+ project expo with a team of 8"
+    }
+  ]
+}
