@@ -107,8 +107,11 @@ ul { list-style: none; display: flex; flex-direction: column; gap: 2px; }
 li { display: flex; gap: 8px; font-size: 14px; }
 li::before { content: "–"; color: var(--muted); flex-shrink: 0; }
 
-.skills { display: grid; grid-template-columns: max-content 1fr; gap: 4px 20px; font-size: 14px; }
+.skills { display: grid; grid-template-columns: max-content 1fr; gap: 6px 20px; font-size: 14px; }
 .skills dt { color: var(--muted); }
+.skills dd { color: var(--fg); }
+.skill { white-space: nowrap; }
+.skills .sep { color: var(--muted); }
 
 footer { font-size: 14px; color: var(--muted); padding-top: 24px; border-top: 1px dashed var(--rule); }
 footer a { color: var(--fg); text-decoration: underline; text-underline-offset: 3px; }
@@ -140,5 +143,7 @@ footer a { color: var(--fg); text-decoration: underline; text-underline-offset: 
 @media (max-width: 480px) {
   main { padding-top: 20px; }
   .skills { grid-template-columns: 1fr; gap: 0; }
-  .skills dd { margin-bottom: 8px; }
+  .skills dt { font-size: 13px; }
+  .skills dd { margin: 2px 0 14px; line-height: 1.7; }
+  .skills dd:last-child { margin-bottom: 0; }
 }

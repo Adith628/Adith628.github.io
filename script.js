@@ -48,7 +48,15 @@ function renderHeader(profile, links) {
 
 const sections = {
   skills: (skills) => section("Skills",
-    h("dl", { class: "skills" }, skills.map((s) => [h("dt", {}, s.group), h("dd", {}, s.items.join(", "))])),
+    h("dl", { class: "skills" }, skills.map((s) => [
+      h("dt", {}, s.group),
+      // each skill is its own span so a name like "Tailwind CSS" never breaks across lines
+      // lines can only wrap at the spaces around the separator dots
+      h("dd", {}, s.items.map((item, i) => [
+        i ? [" ", h("span", { class: "sep", "aria-hidden": "true" }, "·"), " "] : null,
+        h("span", { class: "skill" }, item),
+      ])),
+    ])),
   ),
 
   experience: (jobs) => section("Experience",
