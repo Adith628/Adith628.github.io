@@ -156,7 +156,6 @@ function render(content) {
   );
   app.removeAttribute("aria-busy");
   startClock(content.profile);
-  makeAvatarDraggable();
 }
 
 // live local time next to your location
@@ -168,35 +167,6 @@ function startClock({ timezone, timezoneLabel }) {
   };
   tick();
   setInterval(tick, 30_000);
-}
-
-// draggable avatar that springs back when released (mouse only, so touch still scrolls the page)
-function makeAvatarDraggable() {
-  const avatar = document.getElementById("avatar");
-  let start = null;
-
-  avatar.addEventListener("pointerdown", (e) => {
-    if (e.pointerType !== "mouse") return;
-    start = { x: e.clientX, y: e.clientY };
-    avatar.classList.add("dragging");
-    avatar.setPointerCapture(e.pointerId);
-  });
-
-  avatar.addEventListener("pointermove", (e) => {
-    if (!start) return;
-    const dx = e.clientX - start.x;
-    const dy = e.clientY - start.y;
-    avatar.style.transform = `translate(${dx}px, ${dy}px) rotate(${dx / 20}deg)`;
-  });
-
-  function release() {
-    if (!start) return;
-    start = null;
-    avatar.classList.remove("dragging");
-    avatar.style.transform = "";
-  }
-  avatar.addEventListener("pointerup", release);
-  avatar.addEventListener("pointercancel", release);
 }
 
 // Click tracking: links with data-track show up in GoatCounter as "click: <name>".
