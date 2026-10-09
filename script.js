@@ -52,7 +52,7 @@ function renderHeader(profile, links) {
     ),
     h("p", { class: "bio" }, profile.bio),
     h("p", { class: "meta" }, profile.location, " · ", h("span", { id: "clock" }, profile.timezoneLabel)),
-    h("nav", {}, links.map((l) => link(l.url, l.label))),
+    h("nav", {}, links.map((l) => link(l.url, l.label, { "data-track": l.url.startsWith("mailto:") ? "Email" : l.label }))),
   );
 }
 
@@ -80,8 +80,8 @@ const sections = {
     h("div", { class: "stack" }, projects.map((p) =>
       h("div", { class: "entry" },
         h("div", { class: "row" },
-          p.live ? link(p.live, `${p.name} ↗`, { class: "title" }) : h("p", { class: "title" }, p.name),
-          p.code ? link(p.code, "code ↗", { class: "date" }) : null,
+          p.live ? link(p.live, `${p.name} ↗`, { class: "title", "data-track": `${p.name} (live)` }) : h("p", { class: "title" }, p.name),
+          p.code ? link(p.code, "code ↗", { class: "date", "data-track": `${p.name} (code)` }) : null,
         ),
         h("p", { class: "desc" }, p.description),
         list(p.bullets),
@@ -198,6 +198,15 @@ function makeAvatarDraggable() {
   avatar.addEventListener("pointerup", release);
   avatar.addEventListener("pointercancel", release);
 }
+
+// Click tracking: links with data-track show up in GoatCounter as "click: <name>".
+// Does nothing if GoatCounter didn't load (ad blockers) or on localhost (GoatCounter skips it).
+app.addEventListener("click", (e) => {
+  const el = e.target.closest("a[data-track]");
+  if (!el || !window.goatcounter?.count) return;
+  const name = el.dataset.track;
+  window.goatcounter.count({ path: `click: ${name}`, title: name, event: true });
+});
 
 // Show a readable message instead of a blank page when content.json has a typo.
 function showError(error) {
