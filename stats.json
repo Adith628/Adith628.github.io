@@ -1,0 +1,180 @@
+{
+  "site": "adithyant.goatcounter.com",
+  "generatedAt": "2026-10-10T17:19:53.443Z",
+  "days": 30,
+  "start": "2026-09-11",
+  "end": "2026-10-10",
+  "daily": [
+    {
+      "day": "2026-09-11",
+      "visits": 0
+    },
+    {
+      "day": "2026-09-12",
+      "visits": 0
+    },
+    {
+      "day": "2026-09-13",
+      "visits": 0
+    },
+    {
+      "day": "2026-09-14",
+      "visits": 0
+    },
+    {
+      "day": "2026-09-15",
+      "visits": 0
+    },
+    {
+      "day": "2026-09-16",
+      "visits": 0
+    },
+    {
+      "day": "2026-09-17",
+      "visits": 0
+    },
+    {
+      "day": "2026-09-18",
+      "visits": 0
+    },
+    {
+      "day": "2026-09-19",
+      "visits": 0
+    },
+    {
+      "day": "2026-09-20",
+      "visits": 0
+    },
+    {
+      "day": "2026-09-21",
+      "visits": 0
+    },
+    {
+      "day": "2026-09-22",
+      "visits": 0
+    },
+    {
+      "day": "2026-09-23",
+      "visits": 0
+    },
+    {
+      "day": "2026-09-24",
+      "visits": 0
+    },
+    {
+      "day": "2026-09-25",
+      "visits": 0
+    },
+    {
+      "day": "2026-09-26",
+      "visits": 0
+    },
+    {
+      "day": "2026-09-27",
+      "visits": 0
+    },
+    {
+      "day": "2026-09-28",
+      "visits": 0
+    },
+    {
+      "day": "2026-09-29",
+      "visits": 0
+    },
+    {
+      "day": "2026-09-30",
+      "visits": 0
+    },
+    {
+      "day": "2026-10-01",
+      "visits": 0
+    },
+    {
+      "day": "2026-10-02",
+      "visits": 0
+    },
+    {
+      "day": "2026-10-03",
+      "visits": 0
+    },
+    {
+      "day": "2026-10-04",
+      "visits": 0
+    },
+    {
+      "day": "2026-10-05",
+      "visits": 0
+    },
+    {
+      "day": "2026-10-06",
+      "visits": 0
+    },
+    {
+      "day": "2026-10-07",
+      "visits": 0
+    },
+    {
+      "day": "2026-10-08",
+      "visits": 0
+    },
+    {
+      "day": "2026-10-09",
+      "visits": 0
+    },
+    {
+      "day": "2026-10-10",
+      "visits": 3
+    }
+  ],
+  "pages": [
+    {
+      "path": "/",
+      "title": "Adithyan T — Software Engineer",
+      "count": 2
+    },
+    {
+      "path": "/setup-test-from-claude",
+      "title": "Setup test",
+      "count": 1
+    }
+  ],
+  "clicks": [],
+  "referrers": [
+    {
+      "name": "",
+      "count": 3
+    }
+  ],
+  "locations": [
+    {
+      "name": "India",
+      "count": 3
+    }
+  ],
+  "sizes": [
+    {
+      "name": "Phone",
+      "count": 1
+    },
+    {
+      "name": "Desktop",
+      "count": 2
+    }
+  ],
+  "browsers": [
+    {
+      "name": "Chrome",
+      "count": 3
+    }
+  ],
+  "systems": [
+    {
+      "name": "Windows",
+      "count": 2
+    },
+    {
+      "name": "Android",
+      "count": 1
+    }
+  ]
+}
