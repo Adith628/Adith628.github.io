@@ -17,47 +17,54 @@ if (!TOKEN) {
 
 const API = `https://${SITE}.goatcounter.com/api/v0`;
 const isoDay = (d) => d.toISOString().slice(0, 10);
+// GoatCounter wants full timestamps rounded to the hour, e.g. 2026-10-10T12:00:00Z
+const isoHour = (d) => d.toISOString().slice(0, 13) + ":00:00Z";
 
-const end = new Date();
+const HOUR = 3600 * 1000;
+const end = new Date(Math.ceil(Date.now() / HOUR) * HOUR);
 const start = new Date(end);
+start.setUTCHours(0, 0, 0, 0);
 start.setUTCDate(start.getUTCDate() - (DAYS - 1));
-const range = { start: isoDay(start), end: isoDay(end) };
+const range = { start: isoHour(start), end: isoHour(end) };
 
 async function api(path, params = {}) {
   const url = new URL(API + path);
   for (const [k, v] of Object.entries({ ...range, ...params })) url.searchParams.set(k, v);
-  const res = await fetch(url, { headers: { Authorization: `Bearer ${TOKEN}`, "Content-Type": "application/json" } });
-  if (!res.ok) throw new Error(`${path}: HTTP ${res.status} ${await res.text()}`);
+  const res = await fetch(url, { headers: { Authorization: `Bearer ${TOKEN}` } });
+  console.log(`GET ${path} -> ${res.status}`);
+  if (!res.ok) throw new Error(`${path}: HTTP ${res.status} ${(await res.text()).replace(/s+/g, " ").slice(0, 160)}`);
   return res.json();
 }
 
-// Dimension lists (sources, countries, ...). A failure here leaves that list empty instead of failing the run.
+// Each request is independent: a failure leaves that part empty instead of failing the whole run.
 const errors = [];
-async function dimension(page) {
+async function attempt(fn, fallback) {
   try {
-    const data = await api(`/stats/${page}`, { limit: 10 });
-    return (data.stats || []).map((s) => ({ name: s.name || "", count: s.count || 0 }));
+    return await fn();
   } catch (e) {
     errors.push(e.message);
-    return [];
+    return fallback;
   }
 }
+const dimension = (page) =>
+  attempt(async () => ((await api(`/stats/${page}`, { limit: 10 })).stats || []).map((s) => ({ name: s.name || "", count: s.count || 0 })), []);
 
-const { hits = [] } = await api("/stats/hits", { limit: 100 });
-
-// Page views per day, summed over every non-event path; days with no visits are filled with 0.
+// Visits per day from the site-wide total; days with no visits are filled with 0.
 const perDay = new Map();
-for (let d = new Date(start); d <= end; d.setUTCDate(d.getUTCDate() + 1)) perDay.set(isoDay(d), 0);
-for (const hit of hits.filter((h) => !h.event)) {
-  for (const s of hit.stats || []) if (perDay.has(s.day)) perDay.set(s.day, perDay.get(s.day) + (s.daily || 0));
-}
+for (let d = new Date(start); d < end; d.setUTCDate(d.getUTCDate() + 1)) perDay.set(isoDay(d), 0);
+const total = await attempt(() => api("/stats/total"), null);
+for (const s of total?.stats || []) if (perDay.has(s.day)) perDay.set(s.day, s.daily || 0);
+
+// Per-path counts: pages viewed, and "click: ..." events from tracked links.
+const { hits = [] } = await attempt(() => api("/stats/hits", { limit: 100 }), {});
 
 const byCount = (a, b) => b.count - a.count;
 const stats = {
   site: `${SITE}.goatcounter.com`,
   generatedAt: new Date().toISOString(),
   days: DAYS,
-  ...range,
+  start: isoDay(start),
+  end: isoDay(new Date(end - 1)),
   daily: [...perDay].map(([day, visits]) => ({ day, visits })),
   pages: hits.filter((h) => !h.event).map((h) => ({ path: h.path, title: h.title || "", count: h.count || 0 })).sort(byCount),
   clicks: hits.filter((h) => h.event).map((h) => ({ name: h.path.replace(/^click: /, ""), count: h.count || 0 })).sort(byCount),
@@ -70,6 +77,8 @@ const stats = {
 if (errors.length) stats.errors = errors;
 
 await writeFile(OUT, JSON.stringify(stats, null, 2) + "\n");
-const total = stats.daily.reduce((n, d) => n + d.visits, 0);
-console.log(`Wrote ${OUT}: ${total} visits, ${stats.clicks.length} tracked links, ${errors.length} errors`);
+const visits = stats.daily.reduce((n, d) => n + d.visits, 0);
+console.log(`Wrote ${OUT}: ${visits} visits, ${stats.clicks.length} tracked links, ${errors.length} errors`);
 for (const e of errors) console.warn("warning:", e);
+// Fail the run (so it shows red in Actions) only if nothing at all could be fetched.
+if (!total && !hits.length && errors.length) process.exit(1);
