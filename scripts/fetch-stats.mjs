@@ -27,12 +27,20 @@ start.setUTCHours(0, 0, 0, 0);
 start.setUTCDate(start.getUTCDate() - (DAYS - 1));
 const range = { start: isoHour(start), end: isoHour(end) };
 
-async function api(path, params = {}) {
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+// GoatCounter rate-limits the API, so requests are spaced out and a 429 is retried once after a pause.
+async function api(path, params = {}, retried = false) {
   const url = new URL(API + path);
   for (const [k, v] of Object.entries({ ...range, ...params })) url.searchParams.set(k, v);
+  await sleep(600);
   const res = await fetch(url, { headers: { Authorization: `Bearer ${TOKEN}` } });
   console.log(`GET ${path} -> ${res.status}`);
-  if (!res.ok) throw new Error(`${path}: HTTP ${res.status} ${(await res.text()).replace(/s+/g, " ").slice(0, 160)}`);
+  if (res.status === 429 && !retried) {
+    await sleep(3000);
+    return api(path, params, true);
+  }
+  if (!res.ok) throw new Error(`${path}: HTTP ${res.status} ${(await res.text()).replace(/\s+/g, " ").slice(0, 160)}`);
   return res.json();
 }
 
