@@ -54,8 +54,12 @@ async function attempt(fn, fallback) {
     return fallback;
   }
 }
+// Screen sizes come back with an empty name and the category in `id`.
+const SIZE_NAMES = { phone: "Phone", largephone: "Large phone", tablet: "Tablet", desktop: "Desktop", desktophd: "Large desktop", unknown: "" };
 const dimension = (page) =>
-  attempt(async () => ((await api(`/stats/${page}`, { limit: 10 })).stats || []).map((s) => ({ name: s.name || "", count: s.count || 0 })), []);
+  attempt(async () => ((await api(`/stats/${page}`, { limit: 10 })).stats || [])
+    .filter((s) => s.count > 0)
+    .map((s) => ({ name: s.name || (SIZE_NAMES[s.id] ?? s.id ?? ""), count: s.count })), []);
 
 // Visits per day from the site-wide total; days with no visits are filled with 0.
 const perDay = new Map();
