@@ -1,0 +1,199 @@
+{
+  "site": "adithyant.goatcounter.com",
+  "generatedAt": "2026-10-24T10:53:10.213Z",
+  "days": 30,
+  "start": "2026-09-25",
+  "end": "2026-10-24",
+  "daily": [
+    {
+      "day": "2026-09-25",
+      "visits": 0
+    },
+    {
+      "day": "2026-09-26",
+      "visits": 0
+    },
+    {
+      "day": "2026-09-27",
+      "visits": 0
+    },
+    {
+      "day": "2026-09-28",
+      "visits": 0
+    },
+    {
+      "day": "2026-09-29",
+      "visits": 0
+    },
+    {
+      "day": "2026-09-30",
+      "visits": 0
+    },
+    {
+      "day": "2026-10-01",
+      "visits": 0
+    },
+    {
+      "day": "2026-10-02",
+      "visits": 0
+    },
+    {
+      "day": "2026-10-03",
+      "visits": 0
+    },
+    {
+      "day": "2026-10-04",
+      "visits": 0
+    },
+    {
+      "day": "2026-10-05",
+      "visits": 0
+    },
+    {
+      "day": "2026-10-06",
+      "visits": 0
+    },
+    {
+      "day": "2026-10-07",
+      "visits": 0
+    },
+    {
+      "day": "2026-10-08",
+      "visits": 0
+    },
+    {
+      "day": "2026-10-09",
+      "visits": 0
+    },
+    {
+      "day": "2026-10-10",
+      "visits": 0
+    },
+    {
+      "day": "2026-10-11",
+      "visits": 0
+    },
+    {
+      "day": "2026-10-12",
+      "visits": 0
+    },
+    {
+      "day": "2026-10-13",
+      "visits": 0
+    },
+    {
+      "day": "2026-10-14",
+      "visits": 0
+    },
+    {
+      "day": "2026-10-15",
+      "visits": 0
+    },
+    {
+      "day": "2026-10-16",
+      "visits": 0
+    },
+    {
+      "day": "2026-10-17",
+      "visits": 0
+    },
+    {
+      "day": "2026-10-18",
+      "visits": 0
+    },
+    {
+      "day": "2026-10-19",
+      "visits": 0
+    },
+    {
+      "day": "2026-10-20",
+      "visits": 0
+    },
+    {
+      "day": "2026-10-21",
+      "visits": 0
+    },
+    {
+      "day": "2026-10-22",
+      "visits": 0
+    },
+    {
+      "day": "2026-10-23",
+      "visits": 0
+    },
+    {
+      "day": "2026-10-24",
+      "visits": 0
+    }
+  ],
+  "pages": [
+    {
+      "path": "/",
+      "title": "Adithyan T — Software Engineer",
+      "count": 8
+    },
+    {
+      "path": "/setup-test-from-claude",
+      "title": "Setup test",
+      "count": 1
+    }
+  ],
+  "clicks": [],
+  "referrers": [
+    {
+      "name": "",
+      "count": 7
+    }
+  ],
+  "locations": [
+    {
+      "name": "India",
+      "count": 7
+    },
+    {
+      "name": "Germany",
+      "count": 1
+    },
+    {
+      "name": "United States",
+      "count": 1
+    }
+  ],
+  "sizes": [
+    {
+      "name": "Phone",
+      "count": 3
+    },
+    {
+      "name": "Desktop",
+      "count": 6
+    }
+  ],
+  "browsers": [
+    {
+      "name": "Chrome",
+      "count": 8
+    },
+    {
+      "name": "Firefox",
+      "count": 1
+    }
+  ],
+  "systems": [
+    {
+      "name": "Windows",
+      "count": 5
+    },
+    {
+      "name": "Android",
+      "count": 2
+    },
+    {
+      "name": "Linux",
+      "count": 2
+    }
+  ],
+  "errors": [
+    "/stats/total: HTTP 404 <!DOCTYPE html> <html lang=\"en\"> <head> <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"> <meta name=\"viewport\" content=\"width=device-width, i"
+  ]
+}
